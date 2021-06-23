@@ -13,7 +13,8 @@ public class Team {
     @Column (name = "name")
     private String name;
 
-    @ManyToMany(mappedBy = "developers")
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+///////////
     private List<Developer> devs;
 
     @Column (name = "status")
@@ -64,7 +65,7 @@ public class Team {
         this.devs = devs;
     }
 
-    public TeamStatus getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
