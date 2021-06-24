@@ -1,12 +1,14 @@
 package com.bezngor.crud_hibernate.model;
 
+import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 @Entity
 @Table(name = "skills")
 public class Skill {
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
     @Column (name = "id")
     private Integer id;
     @Column (name = "name")

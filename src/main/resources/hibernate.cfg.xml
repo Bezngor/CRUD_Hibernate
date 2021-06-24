@@ -17,8 +17,8 @@
     <!-- DB schema will be updated if needed -->
     <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
 
-    <mapping class="com.bezngor.crud_hibernate.model.Skill"></mapping>
-    <mapping class="com.bezngor.crud_hibernate.model.Developer"></mapping>
-    <mapping class="com.bezngor.crud_hibernate.model.Team"></mapping>
+    <mapping class="com.bezngor.crud_hibernate.model.Skill"/>
+    <mapping class="com.bezngor.crud_hibernate.model.Developer"/>
+    <mapping class="com.bezngor.crud_hibernate.model.Team"/>
   </session-factory>
 </hibernate-configuration>

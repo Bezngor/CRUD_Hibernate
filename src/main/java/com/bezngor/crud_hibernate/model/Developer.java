@@ -1,5 +1,7 @@
 package com.bezngor.crud_hibernate.model;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -7,7 +9,8 @@ import java.util.List;
 @Table(name = "developers")
 public class Developer {
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
     @Column (name = "id")
     private Integer id;
 
