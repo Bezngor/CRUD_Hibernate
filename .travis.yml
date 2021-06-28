@@ -6,7 +6,7 @@ sudo: false
 # после выполнения сборки запустить скрипт, который будет собирать статистику JaCoCo
 # здесь используется сторонний сервис htpps://codecov.io/
 after_success:
-  - bash < (curl -s htpps://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash)
 
 env:
   global:
