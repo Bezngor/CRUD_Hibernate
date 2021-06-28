@@ -28,7 +28,7 @@ public class DeveloperView {
             buf = scan.nextLine();
             switch (buf) {
                 case "1":
-                    System.out.println(Constants.INSERT_NAME.getValue() + "Developer:");
+                    System.out.println(Constants.INSERT_FIRSTNAME.getValue() + "Developer:");
                     String firstName1 = scan.nextLine();
                     System.out.println(Constants.INSERT_LASTNAME.getValue() + "Developer:");
                     String lastName1 = scan.nextLine();
