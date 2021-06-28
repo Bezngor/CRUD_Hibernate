@@ -36,7 +36,6 @@ public class JavaIODeveloperRepositoryImpl implements DeveloperRepository {
 
         try (Session session = HibernateUtil.getSessionFactory().openSession())
         {
-            session.beginTransaction();
             dev = session.get(Developer.class, id);
             List<Skill> skills = new ArrayList<>();
             for (Skill s : dev.getSkills()) {

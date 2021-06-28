@@ -35,14 +35,14 @@ public class TeamView {
                     String name1 = scan.nextLine();
                     System.out.printf(Constants.INSERT_STATUS.getValue(), TeamStatus.ACTIVE, TeamStatus.UNDER_REVIEW, TeamStatus.DELETED);
                     String statusId1 = scan.nextLine();
-                    TeamStatus status1 = getStatusTeam(statusId1);
+                    TeamStatus status1 = HibernateUtil.getStatusTeam(statusId1);
                     System.out.printf(Constants.FOR_ADDING.getValue(), "Developer", Constants.END.getValue());
                     List<Developer> devs1 = new ArrayList<>();
                     boolean isNext1 = true;
                     while (isNext1) {
                         String str1 = scan.nextLine();
                         if (!str1.equals(Constants.END.getValue())) {
-//                            devs1.add(getDevById(Integer.parseInt(str1)));
+                            devs1.add(HibernateUtil.getDeveloperById(Integer.parseInt(str1)));
                             System.out.println(Constants.INSERT_ID_NEXT.getValue() + "Developer:");
                         } else isNext1 = false;
                     }
@@ -56,14 +56,14 @@ public class TeamView {
                     String name2 = scan.nextLine();
                     System.out.printf(Constants.INSERT_STATUS.getValue(), TeamStatus.ACTIVE, TeamStatus.UNDER_REVIEW, TeamStatus.DELETED);
                     String statusId2 = scan.nextLine();
-                    TeamStatus status2 = getStatusTeam(statusId2);
+                    TeamStatus status2 = HibernateUtil.getStatusTeam(statusId2);
                     System.out.printf(Constants.FOR_ADDING.getValue(), "Developer", Constants.END.getValue());
                     List<Developer> devs2 = new ArrayList<>();
                     boolean isNext2 = true;
                     while (isNext2) {
                         String str2 = scan.nextLine();
                         if (!str2.equals(Constants.END.getValue())) {
-//                            devs2.add(getDevById(Integer.parseInt(str2)));
+                            devs2.add(HibernateUtil.getDeveloperById(Integer.parseInt(str2)));
                             System.out.println(Constants.INSERT_ID_NEXT.getValue() + "Developer:");
                         } else isNext2 = false;
                     }
@@ -92,44 +92,10 @@ public class TeamView {
         }
     }
 
-    TeamStatus getStatusTeam(String statusId) {
+/*    TeamStatus getStatusTeam(String statusId) {
         return Arrays.stream(TeamStatus.values())
                 .filter(v -> v.getValue() == Integer.parseInt(statusId))
                 .findFirst()
                 .orElse(null);
-    }
-/*
-    Developer getDevById(Integer id) {
-        Developer dev = null;
-        List<Skill> skills = new ArrayList<>();
-
-        final String SQL_GET_DEV_BY_ID =
-                "select d.id as id_developer, firstName, lastName, s.id as id_skill, name\n" +
-                        "FROM crud_jdbc.developers d\n" +
-                        "LEFT join crud_jdbc.skills_devs sd\n" +
-                        "on d.id = sd.id_dev\n" +
-                        "Left join crud_jdbc.skills s\n" +
-                        "on sd.id_skill = s.id\n" +
-                        "where d.id = ?";
-
-        try (PreparedStatement preparedStatement = JdbcUtils.getConnection().prepareStatement(SQL_GET_DEV_BY_ID)) {
-            preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            String firstName = null;
-            String lastName = null;
-
-            while (resultSet.next()) {
-                int id_skill = resultSet.getInt(4);
-                String name = resultSet.getString(5);
-                skills.add(new Skill(id_skill, name));
-                firstName = resultSet.getString("firstName");
-                lastName = resultSet.getString("lastName");
-            }
-
-            dev = new Developer(id, firstName, lastName, skills);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return dev;
     }*/
 }

@@ -29,9 +29,9 @@ public class Main {
                 case "2":
                     devView.devViewStart();
                     break;
-/*                case "3":
+                case "3":
                     teamView.teamViewStart();
-                    break;*/
+                    break;
                 case "exit":
                     hasNext = false;
                     break;

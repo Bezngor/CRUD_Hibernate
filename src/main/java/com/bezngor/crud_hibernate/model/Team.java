@@ -6,7 +6,7 @@ import java.util.List;
 @Table(name = "teams")
 public class Team {
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column (name = "id")
     private Integer id;
 
@@ -14,7 +14,10 @@ public class Team {
     private String name;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-///////////
+    @JoinTable(name = "devs_teams",
+        joinColumns = @JoinColumn(name = "id_team"),
+        inverseJoinColumns = @JoinColumn(name = "id_dev")
+    )
     private List<Developer> devs;
 
     @Column (name = "status")
