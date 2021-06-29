@@ -8,13 +8,8 @@ import java.util.List;
 public class SkillController {
     private SkillRepository skillRepo;
 
-
     public SkillController(SkillRepository skillRepo) {
         this.skillRepo = skillRepo;
-    }
-
-    public SkillRepository getSkillRepo() {
-        return skillRepo;
     }
 
     public Skill create(String name) {

@@ -14,10 +14,6 @@ public class TeamController {
         this.teamRepo = teamRepo;
     }
 
-    public TeamRepository getTeamRepo() {
-        return teamRepo;
-    }
-
     public Team create(String name, TeamStatus status, List<Developer> devs) {
         return teamRepo.save(new Team(name, status, devs));
     }

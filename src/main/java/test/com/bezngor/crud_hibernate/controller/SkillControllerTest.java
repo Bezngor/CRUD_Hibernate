@@ -9,11 +9,9 @@ import static org.mockito.Mockito.when;
 
 import com.bezngor.crud_hibernate.controller.SkillController;
 import com.bezngor.crud_hibernate.model.Skill;
-import com.bezngor.crud_hibernate.repository.hibernate.JavaIOSkillRepositoryImpl;
 import com.bezngor.crud_hibernate.repository.SkillRepository;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;

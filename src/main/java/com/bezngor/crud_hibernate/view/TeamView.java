@@ -2,17 +2,12 @@ package com.bezngor.crud_hibernate.view;
 
 import com.bezngor.crud_hibernate.controller.TeamController;
 import com.bezngor.crud_hibernate.model.Developer;
-import com.bezngor.crud_hibernate.model.Skill;
 import com.bezngor.crud_hibernate.model.TeamStatus;
 import com.bezngor.crud_hibernate.repository.hibernate.JavaIOTeamRepositoryImpl;
 import com.bezngor.crud_hibernate.utils.Constants;
 import com.bezngor.crud_hibernate.utils.HibernateUtil;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -46,7 +41,6 @@ public class TeamView {
                             System.out.println(Constants.INSERT_ID_NEXT.getValue() + "Developer:");
                         } else isNext1 = false;
                     }
-
                     teamController.create(name1, status1, devs1);
                     break;
                 case "2":
@@ -91,11 +85,4 @@ public class TeamView {
             }
         }
     }
-
-/*    TeamStatus getStatusTeam(String statusId) {
-        return Arrays.stream(TeamStatus.values())
-                .filter(v -> v.getValue() == Integer.parseInt(statusId))
-                .findFirst()
-                .orElse(null);
-    }*/
 }

@@ -3,10 +3,7 @@ package com.bezngor.crud_hibernate.repository.hibernate;
 import com.bezngor.crud_hibernate.model.Skill;
 import com.bezngor.crud_hibernate.repository.SkillRepository;
 import com.bezngor.crud_hibernate.utils.HibernateUtil;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;

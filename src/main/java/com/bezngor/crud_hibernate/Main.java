@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
         SkillView skillView = new SkillView();
         DeveloperView devView = new DeveloperView();
         TeamView teamView = new TeamView();

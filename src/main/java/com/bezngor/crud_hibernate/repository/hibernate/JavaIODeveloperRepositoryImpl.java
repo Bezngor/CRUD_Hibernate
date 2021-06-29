@@ -5,11 +5,9 @@ import com.bezngor.crud_hibernate.model.Skill;
 import com.bezngor.crud_hibernate.repository.DeveloperRepository;
 import com.bezngor.crud_hibernate.utils.HibernateUtil;
 import org.hibernate.Session;
-import org.hibernate.query.Query;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Queue;
 
 public class JavaIODeveloperRepositoryImpl implements DeveloperRepository {
     @Override

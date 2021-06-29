@@ -4,12 +4,10 @@ import com.bezngor.crud_hibernate.controller.DeveloperController;
 import com.bezngor.crud_hibernate.model.Developer;
 import com.bezngor.crud_hibernate.model.Skill;
 import com.bezngor.crud_hibernate.repository.DeveloperRepository;
-import com.bezngor.crud_hibernate.repository.hibernate.JavaIODeveloperRepositoryImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;

@@ -1,10 +1,8 @@
 package com.bezngor.crud_hibernate.view;
 
 import com.bezngor.crud_hibernate.controller.DeveloperController;
-import com.bezngor.crud_hibernate.controller.SkillController;
 import com.bezngor.crud_hibernate.model.Skill;
 import com.bezngor.crud_hibernate.repository.hibernate.JavaIODeveloperRepositoryImpl;
-import com.bezngor.crud_hibernate.repository.hibernate.JavaIOSkillRepositoryImpl;
 import com.bezngor.crud_hibernate.utils.Constants;
 import com.bezngor.crud_hibernate.utils.HibernateUtil;
 
@@ -16,7 +14,7 @@ import java.util.Scanner;
 public class DeveloperView {
     static DeveloperController devController = new DeveloperController(new JavaIODeveloperRepositoryImpl());
 
-    public void devViewStart() throws SQLException {
+    public void devViewStart() {
         System.out.printf(Constants.START_MESSAGE.getValue(), "Developer", Constants.EXIT.getValue());
 
         boolean isExist = false;

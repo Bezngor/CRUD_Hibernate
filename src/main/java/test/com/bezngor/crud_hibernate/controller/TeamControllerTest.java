@@ -4,7 +4,6 @@ import com.bezngor.crud_hibernate.controller.TeamController;
 import com.bezngor.crud_hibernate.model.Developer;
 import com.bezngor.crud_hibernate.model.Team;
 import com.bezngor.crud_hibernate.model.TeamStatus;
-import com.bezngor.crud_hibernate.repository.hibernate.JavaIOTeamRepositoryImpl;
 import com.bezngor.crud_hibernate.repository.TeamRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

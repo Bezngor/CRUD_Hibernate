@@ -13,10 +13,6 @@ public class DeveloperController {
         this.devRepo = devRepo;
     }
 
-    public DeveloperRepository getDevRepo() {
-        return devRepo;
-    }
-
     public Developer create(String firstName, String lastName, List<Skill> skills) {
         return devRepo.save(new Developer(null, firstName, lastName, skills));
     }
