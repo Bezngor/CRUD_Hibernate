@@ -3,31 +3,22 @@ package com.bezngor.crud_hibernate.repository.hibernate;
 import com.bezngor.crud_hibernate.model.Developer;
 import com.bezngor.crud_hibernate.model.Skill;
 import com.bezngor.crud_hibernate.model.Team;
+import com.bezngor.crud_hibernate.model.TeamStatus;
 import com.bezngor.crud_hibernate.repository.TeamRepository;
 import com.bezngor.crud_hibernate.utils.HibernateUtil;
 import org.hibernate.Session;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.QueryHint;
+import java.util.*;
 
 public class JavaIOTeamRepositoryImpl implements TeamRepository {
     @Override
     public List<Team> getAll() {
-        List<Team> teams = new ArrayList<>();
+        List teams = new ArrayList<>();
 
         try (Session session = HibernateUtil.getSessionFactory().openSession())
         {
-            teams = session.createQuery("from Team").list();
-            for (Team t : teams) {
-                List<Developer> devs = new ArrayList<>();
-                for (Developer d : t.getDevs()) {
-                    devs.add(d);
-                    List<Skill> skills = new ArrayList<>();
-                    for (Skill s : d.getSkills()) {
-                        skills.add(s);
-                    }
-                }
-            }
+            teams = session.createQuery("from Team t left join fetch t.devs").list();
         } catch (Exception e) {
             System.out.println("Ошибка 'getAll'" + e);
         }
@@ -40,15 +31,14 @@ public class JavaIOTeamRepositoryImpl implements TeamRepository {
 
         try (Session session = HibernateUtil.getSessionFactory().openSession())
         {
-            team = session.get(Team.class, id);
-            List<Developer> devs = new ArrayList<>();
+            team = (Team)session.createQuery(
+                    "from Team t left join fetch t.devs where t.id =: team_id")
+                    .setParameter("team_id", id)
+                    .uniqueResult();
             for (Developer d : team.getDevs()) {
-                devs.add(d);
-                List<Skill> skills = new ArrayList<>();
-                for (Skill s : d.getSkills()) {
-                    skills.add(s);
-                }
+                d.getSkills();
             }
+
         }
         return team;
     }
@@ -91,4 +81,23 @@ public class JavaIOTeamRepositoryImpl implements TeamRepository {
             System.out.println("Ошибка при удалении" + e);
         }
     }
+
+
+    public static Developer getDeveloperById(Integer id) {
+        Developer developer = null;
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession())
+        {
+            developer = session.get(Developer.class,id);
+        }
+        return developer;
+    }
+
+    public static TeamStatus getStatusTeam(String statusId) {
+        return Arrays.stream(TeamStatus.values())
+                .filter(v -> v.getValue() == Integer.parseInt(statusId))
+                .findFirst()
+                .orElse(null);
+    }
+
 }

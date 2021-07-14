@@ -24,31 +24,4 @@ public class HibernateUtil {
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }
-
-    public static Skill getSkillById(Integer id) {
-        Skill skill = null;
-
-        try(Session session = getSessionFactory().openSession())
-        {
-            skill = session.get(Skill.class, id);
-        }
-        return skill;
-    }
-
-    public static Developer getDeveloperById(Integer id) {
-        Developer developer = null;
-
-        try (Session session = getSessionFactory().openSession())
-        {
-            developer = session.get(Developer.class,id);
-        }
-        return developer;
-    }
-
-    public static TeamStatus getStatusTeam(String statusId) {
-        return Arrays.stream(TeamStatus.values())
-                .filter(v -> v.getValue() == Integer.parseInt(statusId))
-                .findFirst()
-                .orElse(null);
-    }
 }

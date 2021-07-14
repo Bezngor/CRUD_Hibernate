@@ -3,6 +3,7 @@ package com.bezngor.crud_hibernate.view;
 import com.bezngor.crud_hibernate.controller.DeveloperController;
 import com.bezngor.crud_hibernate.model.Skill;
 import com.bezngor.crud_hibernate.repository.hibernate.JavaIODeveloperRepositoryImpl;
+import com.bezngor.crud_hibernate.repository.hibernate.JavaIOSkillRepositoryImpl;
 import com.bezngor.crud_hibernate.utils.Constants;
 import com.bezngor.crud_hibernate.utils.HibernateUtil;
 
@@ -12,7 +13,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class DeveloperView {
-    static DeveloperController devController = new DeveloperController(new JavaIODeveloperRepositoryImpl());
+    static JavaIODeveloperRepositoryImpl developerRepo = new JavaIODeveloperRepositoryImpl();
+    static DeveloperController devController = new DeveloperController(developerRepo);
 
     public void devViewStart() {
         System.out.printf(Constants.START_MESSAGE.getValue(), "Developer", Constants.EXIT.getValue());
@@ -37,7 +39,7 @@ public class DeveloperView {
                     while (isNext1) {
                         String str1 = scan.nextLine();
                         if (!str1.equals("end")) {
-                            skills1.add(HibernateUtil.getSkillById(Integer.parseInt(str1)));
+                            skills1.add(developerRepo.getSkillById(Integer.parseInt(str1)));
                             System.out.println(Constants.INSERT_ID_NEXT.getValue() + "Skill:");
                         } else isNext1 = false;
                     }
@@ -58,7 +60,7 @@ public class DeveloperView {
                     while (isNext2) {
                         String str2 = scan.nextLine();
                         if (!str2.equals("end")) {
-                            skills2.add(HibernateUtil.getSkillById(Integer.parseInt(str2)));
+                            skills2.add(developerRepo.getSkillById(Integer.parseInt(str2)));
                             System.out.println(Constants.INSERT_ID_NEXT.getValue() + "Skill:");
                         } else isNext2 = false;
                     }

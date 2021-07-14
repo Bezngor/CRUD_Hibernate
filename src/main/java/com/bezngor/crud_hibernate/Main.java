@@ -4,7 +4,6 @@ import com.bezngor.crud_hibernate.view.DeveloperView;
 import com.bezngor.crud_hibernate.view.SkillView;
 import com.bezngor.crud_hibernate.view.TeamView;
 
-import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main {

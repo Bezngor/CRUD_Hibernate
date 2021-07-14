@@ -1,5 +1,7 @@
 package com.bezngor.crud_hibernate.model;
 
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.List;
 @Entity

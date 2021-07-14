@@ -5,14 +5,14 @@ import com.bezngor.crud_hibernate.model.Developer;
 import com.bezngor.crud_hibernate.model.TeamStatus;
 import com.bezngor.crud_hibernate.repository.hibernate.JavaIOTeamRepositoryImpl;
 import com.bezngor.crud_hibernate.utils.Constants;
-import com.bezngor.crud_hibernate.utils.HibernateUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class TeamView {
-    static TeamController teamController = new TeamController(new JavaIOTeamRepositoryImpl());
+    static JavaIOTeamRepositoryImpl teamRepo = new JavaIOTeamRepositoryImpl();
+    static TeamController teamController = new TeamController(teamRepo);
 
     public void teamViewStart() {
         System.out.printf(Constants.START_MESSAGE.getValue(), "Team", Constants.EXIT.getValue());
@@ -30,14 +30,14 @@ public class TeamView {
                     String name1 = scan.nextLine();
                     System.out.printf(Constants.INSERT_STATUS.getValue(), TeamStatus.ACTIVE, TeamStatus.UNDER_REVIEW, TeamStatus.DELETED);
                     String statusId1 = scan.nextLine();
-                    TeamStatus status1 = HibernateUtil.getStatusTeam(statusId1);
+                    TeamStatus status1 = teamRepo.getStatusTeam(statusId1);
                     System.out.printf(Constants.FOR_ADDING.getValue(), "Developer", Constants.END.getValue());
                     List<Developer> devs1 = new ArrayList<>();
                     boolean isNext1 = true;
                     while (isNext1) {
                         String str1 = scan.nextLine();
                         if (!str1.equals(Constants.END.getValue())) {
-                            devs1.add(HibernateUtil.getDeveloperById(Integer.parseInt(str1)));
+                            devs1.add(teamRepo.getDeveloperById(Integer.parseInt(str1)));
                             System.out.println(Constants.INSERT_ID_NEXT.getValue() + "Developer:");
                         } else isNext1 = false;
                     }
@@ -50,14 +50,14 @@ public class TeamView {
                     String name2 = scan.nextLine();
                     System.out.printf(Constants.INSERT_STATUS.getValue(), TeamStatus.ACTIVE, TeamStatus.UNDER_REVIEW, TeamStatus.DELETED);
                     String statusId2 = scan.nextLine();
-                    TeamStatus status2 = HibernateUtil.getStatusTeam(statusId2);
+                    TeamStatus status2 = teamRepo.getStatusTeam(statusId2);
                     System.out.printf(Constants.FOR_ADDING.getValue(), "Developer", Constants.END.getValue());
                     List<Developer> devs2 = new ArrayList<>();
                     boolean isNext2 = true;
                     while (isNext2) {
                         String str2 = scan.nextLine();
                         if (!str2.equals(Constants.END.getValue())) {
-                            devs2.add(HibernateUtil.getDeveloperById(Integer.parseInt(str2)));
+                            devs2.add(teamRepo.getDeveloperById(Integer.parseInt(str2)));
                             System.out.println(Constants.INSERT_ID_NEXT.getValue() + "Developer:");
                         } else isNext2 = false;
                     }

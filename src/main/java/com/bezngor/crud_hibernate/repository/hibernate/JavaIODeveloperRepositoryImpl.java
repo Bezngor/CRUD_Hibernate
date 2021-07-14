@@ -6,8 +6,7 @@ import com.bezngor.crud_hibernate.repository.DeveloperRepository;
 import com.bezngor.crud_hibernate.utils.HibernateUtil;
 import org.hibernate.Session;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class JavaIODeveloperRepositoryImpl implements DeveloperRepository {
     @Override
@@ -15,12 +14,10 @@ public class JavaIODeveloperRepositoryImpl implements DeveloperRepository {
         List<Developer> devs = new ArrayList<>();
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()){
-            devs = session.createQuery("from Developer").list();
-            for (Developer d : devs) {
-                List<Skill> skills = new ArrayList<>();
-                for (Skill s : d.getSkills()) {
-                    skills.add(s);
-                }
+            List listDev = session.createQuery("from Developer d left join fetch d.skills").list();
+            Set<Developer> setDev = new HashSet<>(listDev);
+            for (Developer d : setDev) {
+                devs.add(d);
             }
         } catch (Exception e) {
             System.out.println("Ошибка 'getAll'" + e);
@@ -34,11 +31,10 @@ public class JavaIODeveloperRepositoryImpl implements DeveloperRepository {
 
         try (Session session = HibernateUtil.getSessionFactory().openSession())
         {
-            dev = session.get(Developer.class, id);
-            List<Skill> skills = new ArrayList<>();
-            for (Skill s : dev.getSkills()) {
-                skills.add(s);
-            }
+            dev = (Developer) session.createQuery(
+                    "select distinct d from Developer d left join fetch d.skills where d.id =: dev_id")
+                    .setParameter("dev_id", id)
+                    .uniqueResult();
         } catch (Exception e) {
             System.out.println("Ошибка 'getById'" + e);
         }
@@ -83,4 +79,15 @@ public class JavaIODeveloperRepositoryImpl implements DeveloperRepository {
             System.out.println("Ошибка при удалении" + e);
         }
     }
+
+    public static Skill getSkillById(Integer id) {
+        Skill skill = null;
+
+        try(Session session = HibernateUtil.getSessionFactory().openSession())
+        {
+            skill = session.get(Skill.class, id);
+        }
+        return skill;
+    }
+
 }
