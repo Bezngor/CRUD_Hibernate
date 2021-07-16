@@ -18,7 +18,11 @@ public class JavaIOTeamRepositoryImpl implements TeamRepository {
 
         try (Session session = HibernateUtil.getSessionFactory().openSession())
         {
-            teams = session.createQuery("from Team t left join fetch t.devs").list();
+            List listTeams = session.createQuery("from Team t left join fetch t.devs").list();
+            Set<Team> setTeams = new HashSet<>(listTeams);
+            for (Team t : setTeams) {
+                teams.add(t);
+            }
         } catch (Exception e) {
             System.out.println("Ошибка 'getAll'" + e);
         }
@@ -35,10 +39,6 @@ public class JavaIOTeamRepositoryImpl implements TeamRepository {
                     "from Team t left join fetch t.devs where t.id =: team_id")
                     .setParameter("team_id", id)
                     .uniqueResult();
-            for (Developer d : team.getDevs()) {
-                d.getSkills();
-            }
-
         }
         return team;
     }

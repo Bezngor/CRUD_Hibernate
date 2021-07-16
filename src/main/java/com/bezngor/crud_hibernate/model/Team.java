@@ -83,7 +83,6 @@ public class Team {
         return "Team{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", devs=" + devs +
                 ", status=" + status +
                 '}';
     }
